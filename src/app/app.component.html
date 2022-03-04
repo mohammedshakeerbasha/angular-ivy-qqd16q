@@ -1,0 +1,8 @@
+<app-create-content
+  (newContentEvent)="addContent($event)"
+  [contentResponse]="contentResponse"
+></app-create-content>
+<app-content-list
+  [newContent]="newContent"
+  (contentAdditionResponse)="contentAdditionResponse($event)"
+></app-content-list>

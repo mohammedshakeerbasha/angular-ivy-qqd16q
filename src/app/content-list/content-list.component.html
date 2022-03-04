@@ -1,0 +1,47 @@
+<div style="text-align: center">
+  <input type="text" #inputValue />
+  <button (click)="searchDress(inputValue.value)">Click</button>
+  <div style="text-align: center">
+    <h1 *ngIf="content" class="content">CONTENT EXISTS</h1>
+    <h1 *ngIf="noContent" class="noContent">CONTENT DOES NOT EXISTS</h1>
+  </div>
+</div>
+
+<div>
+  <h1 style="color: blue; text-align: center">LIST OF BOOKS:</h1>
+</div>
+<div style="display: flex; flex-wrap: wrap" *ngIf="filteredData.length > 0">
+  <div *ngFor="let content of filteredData; first as isFirst; last as isLast">
+    <div
+      [class]="content.type"
+      appBorder
+      [class]="
+        isFirst
+          ? [firstcard, content.type]
+          : isLast
+          ? [lastcard, content.type]
+          : content.type
+      "
+    >
+      <p><strong>ID:</strong> {{ content.id }}</p>
+      <p appHoverEffect><strong>TITLE:</strong> {{ content.title }}</p>
+      <img
+        style="margin-left: 40px"
+        src="{{
+          content.imgURL ? content.imgURL : '../../assets/img/default.jpg'
+        }}"
+        width="240"
+        height="216"
+        alt=""
+      />
+      <p><strong>DESCRIPTION:</strong> {{ content.description }}</p>
+      <p><strong>PRIZE:</strong> {{ content.prize }}</p>
+      <span
+        ><strong>SIZE:</strong
+        ><span *ngFor="let size of content?.tags" appHoverEffect class="tag"
+          >{{ " " }}{{ size }}</span
+        ></span
+      >
+    </div>
+  </div>
+</div>
